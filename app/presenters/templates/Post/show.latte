@@ -1,0 +1,57 @@
+{* Latte template *}
+
+
+{block content}
+
+<p><a n:href="Homepage:default">Zpět na výpis příspěvků</a></p>
+
+
+
+
+<div class="vypis">
+    <table frame = border>
+        <tr><td><div class="vystaveni">{$auto->typ_vystaveni}</div></td></tr>
+        <tr><td>Značka: {$auto->znacka}</td></tr>
+        <tr><td>Model: {$auto->model}</td></tr>
+        <tr><td>Rok výroby: {$auto->rok_vyroby}</td></tr>
+        <tr><td>Cena: {$auto->cena} Kč</td></tr>
+        <tr><td>Výkon: {$auto->vykon} kW</td></tr>
+        <tr><td>Palivo: {$auto->palivo}</td></tr>
+        <tr><td>Najeto: {$auto->najeto_km} Km</td></tr>
+        <tr><td>Doplňující popis: <br>{$auto->popis}</td></tr>
+        <tr><td><div class="date">Příspěvek přidán: {$auto->vytvoreno|date:'%d.%m.%Y'}</div></td></tr>
+    </table>
+    
+    <h2>Prodávající</h2>
+    <div class="profil">
+        <table>
+            <tr><td>Prodávající: <a href="{link Profile:show $uzivatel->id_uzivatele}">{$uzivatel->prezdivka}</a></td></tr>
+            <tr><td>E-mail: {$uzivatel->email}</td></tr>
+            <tr><td>Telefon: {$uzivatel->telefon}</td></tr>
+            <tr><td>Bydliště: {$uzivatel->odkud}</td></tr>
+        </table>
+    </div>
+    
+    
+    <h2>Vložte nový komentář</h2>
+    
+    {control commentForm}
+
+    <h2>Komentáře</h2>
+
+        {foreach $komentar as $kom}
+            
+            <div class="comments">
+                <table frame = "border">
+                    
+                    <tr><td><br>Napsal: <a href="{link Profile:show $kom->id_uzivatele}">{$kom->ref('uzivatel')->prezdivka}</a></td></tr>
+                    <tr><td>Text: {$kom->obsah}</td></tr>
+                    <tr><td>Datum přidání: {$kom->vytvoreno|date:'%d.%m.%Y'}</td></tr>
+                </table>
+            </div>
+            
+        {/foreach}
+        
+    
+</div>
+{/block}

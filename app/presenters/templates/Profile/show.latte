@@ -1,0 +1,35 @@
+{* Latte template *}
+
+{block content}
+
+<p><a n:href="Homepage:default">Zpět na výpis příspěvků</a></p>
+
+<h2>Profil uživatele</h2>
+
+    <div class="profil">
+        <table frame = border>
+            <tr><td>Přezdívka: {$uziv->prezdivka}</td></tr>
+            <tr><td>E-mail: {$uziv->email}</td></tr>
+            <tr><td>Telefonní číslo: {$uziv->telefon}</td></tr>
+            <tr><td>Odkud: {$uziv->odkud}</td></tr>
+        </table>
+    </div>
+
+            
+<h2>Napište Vaši spokojenost s prodejcem</h2> 
+            
+{control evaluateForm}
+
+<h2>Hodnocení prodejce</h2>
+
+{foreach $hodnoceni_uzivatele as $hodnoceni}
+    <table frame = border>
+        <tr><td><br>Napsal: <a href="{link Profile:show $hodnoceni->id_uzivatele2}">{$hodnoceni->ref('uzivatel')->prezdivka}</a></td></tr>
+        <tr><td>Hodnocení: {$hodnoceni->hodnoceni}</td></tr>
+        <tr><td>Datum přidání: {$hodnoceni->vytvoreno|date:'%d.%m.%Y'}</td></tr>
+    </table>
+{/foreach}
+
+
+
+{/block}

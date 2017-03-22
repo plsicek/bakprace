@@ -1,0 +1,9 @@
+parameters:
+
+
+database:
+	dsn: 'mysql:host=127.0.0.1;dbname=bpdatabaze'
+	user: root
+	password: Honzik123
+	options:
+		lazy: yes

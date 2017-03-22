@@ -1,0 +1,27 @@
+{block content}
+
+
+<ul class="navigace">
+            {if $user->loggedIn}
+                <li><a n:href="Sign:out">Odhlásit se</a></li>
+            {else}
+            <li><a n:href="Sign:in">Přihlásit se</a></li>
+            {/if}
+        </ul>
+
+<a n:href="Post:createCar" n:if="$user->loggedIn">Vložit auto</a>
+<a n:href="Post:cratePartOfCar" n:if="$user->loggedIn">Vložit autodíl</a>
+
+
+{foreach $automobil as $auto}
+    <div class="automobil">
+        <table frame = border>
+            <tr><td><h2><a href="{link Post:show $auto->id_automobilu}">{$auto->znacka}</a></h2></td><td><h2>{$auto->model}</h2></td></tr>
+            <tr><td><h3><div class="vystaveni">Typ: {$auto->typ_vystaveni}</div></h3></td></tr>
+            <tr><td><h3>Rok výroby: {$auto->rok_vyroby}</h3></td></tr>
+            <tr><td><h3>{$auto->cena} Kč</h3></td></tr>
+        </table>
+    </div>
+{/foreach}
+
+{/block}
